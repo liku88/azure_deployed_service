@@ -5,7 +5,7 @@ const { WebPubSubServiceClient } = require('@azure/web-pubsub');
 const app = express();
 app.use(bodyParser.json());
 
-const serviceClient = new WebPubSubServiceClient('your-connection-string', 'your-hub-name');
+const serviceClient = new WebPubSubServiceClient('Endpoint=https://azurewebpubsub.webpubsub.azure.com;AccessKey=hSm9DSLxXWiP2qJFPLCaagFICDaRBhaY7E9WfMf3A5c=;Version=1.0;', 'azureHub');
 
 // Function to generate random JSON responses
 function generateResponse() {
