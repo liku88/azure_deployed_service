@@ -1,0 +1,35 @@
+name: Node.js CI/CD
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Use Node.js 18.x
+      uses: actions/setup-node@v2
+      with:
+        node-version: '18.x'
+        cache: 'npm'
+        
+    - name: Install dependencies
+      run: npm install
+
+    # If you have tests, you would include them here
+    #- name: Run tests
+    #  run: npm run test
+
+    - name: Publish to Azure WebApp
+      uses: azure/webapps-deploy@v2
+      with:
+        app-name: 'AzureDeployedExpressApp'
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        package: .
+
