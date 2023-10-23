@@ -19,6 +19,7 @@ app.post('/generate', async (req, res) => {
   
   try {
     await serviceClient.sendToAll('newResponse', JSON.stringify(response));
+    console.log(JSON.stringify(response));
     res.status(200).send({ message: 'Response generated and sent to Azure Web PubSub.' });
   } catch (error) {
     console.error('Error sending response to Azure Web PubSub:', error);
